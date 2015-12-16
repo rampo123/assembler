@@ -10,8 +10,8 @@ void concat(char s1[17],char s2[5]);
 
 int main()
 {
-	FILE *f1=fopen("inst_set.txt","r");
-	FILE *fpass=fopen("inst_set.txt","r");
+	FILE *f1=fopen("ins_set.txt","r");
+	FILE *fpass=fopen("ins_set.txt","r");
 	FILE *f2=fopen("machine.txt","w");
 
 	FILE *fetch1=fopen("a.txt","r");
@@ -30,7 +30,7 @@ int main()
 	printf("PASS 1\n");
 	line=0;
 	while((fetchins=fgetc(fpass))!= EOF)
-	{	
+	{
 		if(fetchins=='\n')
 		{
 			line++;
@@ -104,14 +104,14 @@ int main()
 	printf("Assembly Language code-> Machine Language\n");
 	ins[0]='\0';
 	while((w=fgetc(f1))!= EOF)
-	{	
+	{
 		if(w=='@')
 		{
 			printf("Code breaked ins=%s line=%d",ins,line);
 			exit(0);
 		}
 		if(flag>0)
-		flag--;	
+		flag--;
 		if(w!='\n'&&w!=' '&&w!=',')
 		{
 				ins[count++]=w;
@@ -161,7 +161,7 @@ int main()
 			found=0;
 			for(j=0;j<index;j++)
 			{
-				if(strcmp(lab[j],ins)==0)	
+				if(strcmp(lab[j],ins)==0)
 				{
 					found++;
 				}
@@ -173,7 +173,7 @@ int main()
 				scanf("%c",&h);
 				if(h=='h')
 				{
-					printf("\nKindly use the following instruction-");	
+					printf("\nKindly use the following instruction-");
 					for(j=0;j<number;j++)
 					{
 						if(ins[0]==a[j][0])
@@ -194,8 +194,8 @@ int main()
 					else
 					binary(labline[j],code);
 					printf("%s %s\n",lab[j],code);
-				fputs(code,f2);	
-				break;	
+				fputs(code,f2);
+				break;
 				}
 			}
 			if(index==j)
@@ -211,29 +211,29 @@ int main()
 			int num=0;
 			for(j=0;ins[j]!='\0';j++)
 				num=num*10+(ins[j]-48);
-			binary(num,code);	
+			binary(num,code);
 			printf("%s- %s\n\n",ins,code);
-			fputs(code,f2);	
+			fputs(code,f2);
 			fputc('\n',f2);
 			len=0;
 			getch();
 		}
 		else if((strcmp(curr,"LOAD")==0&&(substring(ins,"R")!=0)&&(substring(ins,"L")!=0)))
 		{
-			hexa(ins,code);	
+			hexa(ins,code);
 			printf("%s- %s\n\n",ins,code);
 			getch();
-			fputs(code,f2);	
+			fputs(code,f2);
 			fputc('\n',f2);
 			getch();
 			len=0;
 		}
 		else if((strcmp(curr,"STR")==0&&(substring(ins,"R")!=0)&&(substring(ins,"S")!=0)))
 		{
-			hexa(ins,code);	
+			hexa(ins,code);
 			printf("%s- %s\n\n",ins,code);
 			getch();
-			fputs(code,f2);	
+			fputs(code,f2);
 			fputc('\n',f2);
 			getch();
 			len=0;
@@ -250,7 +250,7 @@ int main()
 		}
 		if(strcmp(ins,"HLT")==0)
 		{
-			fputc('\n',f2);	
+			fputc('\n',f2);
 			printf("HLT - 1111111111110000");
 			fputs("1111111111110000",f2);
 		}
@@ -269,14 +269,14 @@ void binary(int num,char code[17])
 	{
 		if(num%2==1)
 		code[i++]='1';
-	 	else 
+	 	else
 	 	code[i++]='0';
 		num/=2;
 	}
 	for(;i<16;i++)
 	{
 		code[i]='0';
-	}	
+	}
 	code[16]='\0';
 	strrev(code);
 	return code;
@@ -288,7 +288,7 @@ void hexa(char num[5],char code[17])
 	len=strlen(num);
 	for(i=4;i>len;i--)
 	    concat(code,"0000");
-        
+
 	for(i=0;num[i]!='\0';num++)
 	{
 		switch(num[i])
